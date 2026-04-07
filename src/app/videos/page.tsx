@@ -74,6 +74,7 @@ function VideoCard({
           alt={title}
           fill
           className="object-cover opacity-90 group-hover:opacity-80 group-hover:scale-[1.02] transition-all duration-500"
+          style={{ objectPosition: 'center top' }}
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
         {/* Play indicator */}

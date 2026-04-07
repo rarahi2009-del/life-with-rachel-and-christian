@@ -193,9 +193,10 @@ export default function GroupTripsPage() {
       <section className="relative h-screen min-h-[580px] max-h-[820px] flex items-center justify-center pt-16">
         <Image
           src={IMAGES.hero.groupTrips}
-          alt="Travel destination"
+          alt="Rachel and Christian on a Mediterranean yacht"
           fill
           className="object-cover"
+          style={{ objectPosition: 'center top' }}
           priority
           sizes="100vw"
         />
@@ -285,6 +286,7 @@ export default function GroupTripsPage() {
                   alt={card.title}
                   fill
                   className="object-cover opacity-80 group-hover:scale-[1.02] transition-transform duration-500"
+                  style={{ objectPosition: 'center top' }}
                   sizes="(max-width: 768px) 100vw, 33vw"
                 />
                 {/* Coming soon overlay */}

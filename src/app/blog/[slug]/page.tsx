@@ -112,6 +112,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           alt={post.title}
           fill
           className="object-cover"
+          style={{ objectPosition: 'center top' }}
           priority
           sizes="100vw"
         />
@@ -198,6 +199,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                     alt={post.title}
                     fill
                     className="object-cover group-hover:scale-[1.02] transition-transform duration-500"
+                    style={{ objectPosition: 'center top' }}
                     sizes="(max-width: 768px) 100vw, 33vw"
                   />
                 </div>

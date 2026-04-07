@@ -106,9 +106,10 @@ export default function HomePage() {
       <section className="relative h-screen min-h-[600px] max-h-[900px]">
         <Image
           src={IMAGES.hero.home}
-          alt="Christian and Rachel traveling"
+          alt="Christian and Rachel at a tulip farm"
           fill
           className="object-cover"
+          style={{ objectPosition: 'center 40%' }}
           priority
           sizes="100vw"
         />
@@ -194,9 +195,10 @@ export default function HomePage() {
             <div className="relative aspect-video bg-brand-black rounded-sm overflow-hidden group cursor-pointer">
               <Image
                 src={IMAGES.home.youtubeThumbnail}
-                alt="Osaka at night — latest video"
+                alt="Tokyo Daily Life — latest video"
                 fill
-                className="object-cover opacity-60 group-hover:opacity-50 transition-opacity"
+                className="object-cover opacity-70 group-hover:opacity-60 transition-opacity"
+                style={{ objectPosition: 'center top' }}
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
               {/* Play button */}
@@ -267,6 +269,7 @@ export default function HomePage() {
                   alt={post.title}
                   fill
                   className="object-cover group-hover:scale-[1.02] transition-transform duration-500"
+                  style={{ objectPosition: 'center top' }}
                   sizes="(max-width: 768px) 100vw, 33vw"
                 />
               </div>

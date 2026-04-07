@@ -61,6 +61,7 @@ export default function AboutPage() {
           alt="Christian and Rachel"
           fill
           className="object-cover"
+          style={{ objectPosition: 'center top' }}
           priority
           sizes="100vw"
         />
@@ -85,9 +86,10 @@ export default function AboutPage() {
           <div className="relative aspect-[3/4] w-full max-w-md mx-auto lg:mx-0 overflow-hidden">
             <Image
               src={IMAGES.about.portrait}
-              alt="Christian and Rachel portrait"
+              alt="Christian and Rachel"
               fill
               className="object-cover"
+              style={{ objectPosition: 'center top' }}
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
           </div>
@@ -195,6 +197,7 @@ export default function AboutPage() {
                   alt={post.title}
                   fill
                   className="object-cover group-hover:scale-[1.02] transition-transform duration-500"
+                  style={{ objectPosition: 'center top' }}
                   sizes="(max-width: 768px) 100vw, 33vw"
                 />
               </div>

@@ -95,9 +95,10 @@ export default function WorkWithUsPage() {
           <div className="relative aspect-[4/5] w-full max-w-sm mx-auto lg:mx-0 overflow-hidden">
             <Image
               src={IMAGES.workWithUs.creator}
-              alt="Christian filming on location"
+              alt="Rachel filming content"
               fill
               className="object-cover"
+              style={{ objectPosition: 'center top' }}
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
           </div>
