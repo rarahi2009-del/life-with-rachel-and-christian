@@ -129,11 +129,17 @@ export default async function BlogPostPage({
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             components={{
-              p: ({ children }) => (
-                <p className="font-jost font-light text-[1.02rem] text-charcoal leading-[1.85] mb-6">
-                  {children}
-                </p>
-              ),
+              p: ({ children }) => {
+                // Don't wrap block-level elements (e.g. <figure> from images) in <p>
+                const arr = Array.isArray(children) ? children : [children]
+                const hasBlock = arr.some((c: any) => c?.type === 'figure' || c?.props?.src)
+                if (hasBlock) return <>{children}</>
+                return (
+                  <p className="font-jost font-light text-[1.02rem] text-charcoal leading-[1.85] mb-6">
+                    {children}
+                  </p>
+                )
+              },
               h1: ({ children }) => (
                 <h1 className="font-playfair font-bold text-2xl text-brand-black mt-10 mb-4 leading-tight">
                   {children}

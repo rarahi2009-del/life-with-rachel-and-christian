@@ -7,6 +7,38 @@ const notion = new Client({ auth: process.env.NOTION_TOKEN })
 const n2m = new NotionToMarkdown({ notionClient: notion })
 const DB = process.env.NOTION_BLOG_DB!
 
+// ─── Image URL helpers ─────────────────────────────────────────────────────
+
+/** Convert a Dropbox share link to a direct image URL */
+function toDirectImageUrl(url: string): string {
+  if (url.includes('dropbox.com')) {
+    // Remove any existing dl= param, then append raw=1
+    const cleaned = url.replace(/[?&]dl=\d+/, '').replace(/&$/, '')
+    const sep = cleaned.includes('?') ? '&' : '?'
+    return cleaned + sep + 'raw=1'
+  }
+  return url
+}
+
+/** Returns true if the URL looks like an image */
+function isImageUrl(url: string): boolean {
+  return /\.(jpg|jpeg|png|gif|webp|avif|svg)(\?|&|$)/i.test(url) ||
+    url.includes('dropbox.com')
+}
+
+// Render link_preview and bookmark blocks as <img> when the URL is an image
+n2m.setCustomTransformer('link_preview', async (block: any) => {
+  const url: string = block?.link_preview?.url ?? ''
+  if (url && isImageUrl(url)) return `![](${toDirectImageUrl(url)})`
+  return false // fall through to default rendering
+})
+
+n2m.setCustomTransformer('bookmark', async (block: any) => {
+  const url: string = block?.bookmark?.url ?? ''
+  if (url && isImageUrl(url)) return `![](${toDirectImageUrl(url)})`
+  return false
+})
+
 // ─── Types ─────────────────────────────────────────────────────────────────
 
 export type BlogPost = {
