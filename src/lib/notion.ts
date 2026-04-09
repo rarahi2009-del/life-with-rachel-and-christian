@@ -25,34 +25,56 @@ export type BlogPost = {
 
 // ─── Helpers ───────────────────────────────────────────────────────────────
 
-function richText(prop: any): string {
-  return prop?.rich_text?.[0]?.plain_text ?? ''
+/** Look up a Notion property by name, trimming whitespace and ignoring case */
+function prop(properties: any, name: string): any {
+  // Exact match first
+  if (properties[name] !== undefined) return properties[name]
+  // Fuzzy match: trim + lowercase
+  const key = Object.keys(properties).find(
+    (k) => k.trim().toLowerCase() === name.trim().toLowerCase()
+  )
+  return key ? properties[key] : undefined
+}
+
+function richText(p: any): string {
+  return p?.rich_text?.[0]?.plain_text ?? ''
 }
 
 function extractPost(page: any): BlogPost {
   const p = page.properties
-  const youtubeId = richText(p['YouTube ID']) || null
+
+  const youtubeId = richText(prop(p, 'YouTube ID')) || null
+
+  // Header Image can be a URL type or rich_text type
+  const headerImageProp = prop(p, 'Header Image')
+  const headerImageValue =
+    headerImageProp?.url ||           // URL property type
+    richText(headerImageProp) ||      // rich_text property type
+    null
   const headerImage =
-    richText(p['Header Image']) ||
+    headerImageValue ||
     (youtubeId ? `https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg` : null)
 
-  // If Published column doesn't exist yet, default to true so posts show up
-  const published = p.Published?.checkbox ?? true
+  const published = prop(p, 'Published')?.checkbox ?? true
 
-  // Support both Select and Multi-select for Category
+  // Handle "Cateory" (missing g) or correct "Category" spelling
+  const catProp = prop(p, 'Category') ?? prop(p, 'Cateory')
   const categories: string[] =
-    p.Category?.multi_select?.map((s: any) => s.name) ??
-    (p.Category?.select?.name ? [p.Category.select.name] : [])
+    catProp?.multi_select?.map((s: any) => s.name) ??
+    (catProp?.select?.name ? [catProp.select.name] : [])
+
+  // Handle "Exerpt" or "Excerpt" spelling
+  const excerptProp = prop(p, 'Excerpt') ?? prop(p, 'Exerpt')
 
   return {
     id: page.id,
-    title: p.Title?.title?.[0]?.plain_text ?? '',
-    slug: richText(p.Slug),
-    date: p.Date?.date?.start ?? '',
+    title: prop(p, 'Title')?.title?.[0]?.plain_text ?? '',
+    slug: richText(prop(p, 'Slug')),
+    date: prop(p, 'Date')?.date?.start ?? '',
     categories,
-    category: categories[0] ?? '',   // primary label shown on cards
-    excerpt: richText(p.Excerpt),
-    readTime: richText(p['Read Time']) || '5 min read',
+    category: categories[0] ?? '',
+    excerpt: richText(excerptProp),
+    readTime: richText(prop(p, 'Read Time')) || '5 min read',
     youtubeId,
     headerImage,
     published,
