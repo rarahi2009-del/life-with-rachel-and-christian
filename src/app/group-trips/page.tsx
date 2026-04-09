@@ -27,22 +27,10 @@ const STEPS = [
 
 const DESTINATION_CARDS = [
   {
-    image: IMAGES.groupTrips.japanSpring,
-    tag: 'Spring 2026',
-    title: 'Japan',
-    desc: "Cherry blossom season. Kyoto, Tokyo, Osaka. Small group, people who actually want to be there.",
-  },
-  {
-    image: IMAGES.groupTrips.southeastAsia,
-    tag: 'Fall 2026',
-    title: 'Southeast Asia',
-    desc: "Thailand, Vietnam, or both. We're still deciding — waitlist people will weigh in.",
-  },
-  {
     image: IMAGES.groupTrips.europe,
     tag: 'Summer 2026',
-    title: 'Europe',
-    desc: "Where exactly? TBD. But probably slower and less touristy than you're imagining.",
+    title: 'Greece',
+    desc: "Islands, history, and food worth every bite. Small group, slow pace — the way it should be done.",
   },
 ]
 
@@ -107,82 +95,6 @@ function FAQ({ q, a }: { q: string; a: string }) {
   )
 }
 
-// ─── Waitlist form (needs client state) ────────────────────────────────────
-
-function WaitlistForm() {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [submitted, setSubmitted] = useState(false)
-  const [error, setError] = useState('')
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!name.trim()) { setError('Please enter your first name.'); return }
-    if (!email.trim() || !/\S+@\S+\.\S+/.test(email)) {
-      setError('Please enter a valid email address.')
-      return
-    }
-    setError('')
-    setSubmitted(true)
-  }
-
-  if (submitted) {
-    return (
-      <div className="bg-brand-black text-white p-8 text-center">
-        <p className="font-playfair font-bold text-2xl mb-3">You&apos;re on the list.</p>
-        <p className="font-jost font-light text-white/70">
-          We&apos;ll be in touch when something&apos;s happening.
-        </p>
-      </div>
-    )
-  }
-
-  return (
-    <form onSubmit={handleSubmit} className="space-y-4" noValidate>
-      <div>
-        <label
-          htmlFor="wl-name"
-          className="block font-jost text-[10px] font-medium tracking-[0.18em] uppercase text-muted mb-2"
-        >
-          First Name
-        </label>
-        <input
-          id="wl-name"
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="Rachel"
-          className="w-full border border-divider bg-white px-4 py-3 font-jost text-sm text-brand-black placeholder:text-muted/50 focus:outline-none focus:border-gold transition-colors"
-        />
-      </div>
-      <div>
-        <label
-          htmlFor="wl-email"
-          className="block font-jost text-[10px] font-medium tracking-[0.18em] uppercase text-muted mb-2"
-        >
-          Email Address
-        </label>
-        <input
-          id="wl-email"
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="you@example.com"
-          className="w-full border border-divider bg-white px-4 py-3 font-jost text-sm text-brand-black placeholder:text-muted/50 focus:outline-none focus:border-gold transition-colors"
-        />
-      </div>
-      {error && (
-        <p className="font-jost text-xs text-red-600">{error}</p>
-      )}
-      <button
-        type="submit"
-        className="w-full bg-brand-black text-white font-jost text-[11px] font-medium tracking-[0.18em] uppercase py-4 hover:bg-gold transition-colors duration-200"
-      >
-        I&apos;m In
-      </button>
-    </form>
-  )
-}
 
 // ─── Page ──────────────────────────────────────────────────────────────────
 
@@ -213,10 +125,12 @@ export default function GroupTripsPage() {
           </p>
           <div className="animate-fade-in-up opacity-0-init delay-550" style={{ animationFillMode: 'forwards' }}>
             <a
-              href="#waitlist"
+              href="https://trovatrip.com/trip/survey?hostId=69b85e2fb28d3cc6e61d1e9b&host=Rachel+and+Christian+Thomas&listId=69b85e2f26fab0bc26af08e7"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-block bg-gold text-white font-jost text-[11px] font-medium tracking-[0.18em] uppercase px-8 py-4 hover:bg-gold-light transition-colors"
             >
-              Join the Waitlist
+              Count Me In
             </a>
           </div>
         </div>
@@ -277,7 +191,7 @@ export default function GroupTripsPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-sm mx-auto md:max-w-none">
           {DESTINATION_CARDS.map((card) => (
             <div key={card.title} className="group card-hover border border-divider bg-white relative overflow-hidden">
               <div className="relative aspect-[4/3] overflow-hidden">
@@ -312,21 +226,26 @@ export default function GroupTripsPage() {
         </div>
       </section>
 
-      {/* ── WAITLIST FORM ────────────────────────────────────────────────── */}
+      {/* ── WAITLIST / SIGN UP ───────────────────────────────────────────── */}
       <section id="waitlist" className="bg-beige">
-        <div className="max-w-2xl mx-auto px-5 lg:px-8 py-16 lg:py-20">
-          <div className="text-center mb-10">
-            <p className="font-jost text-[10px] font-medium tracking-[0.22em] uppercase text-gold mb-4">
-              Be First to Know
-            </p>
-            <h2 className="font-playfair font-bold text-3xl lg:text-4xl text-brand-black mb-5 tracking-tight">
-              Get on the list.
-            </h2>
-            <p className="font-jost font-light text-base text-muted leading-relaxed">
-              We&apos;ll reach out when trips are ready. No spam, no sales pitch — just an email when something real is happening.
-            </p>
-          </div>
-          <WaitlistForm />
+        <div className="max-w-2xl mx-auto px-5 lg:px-8 py-16 lg:py-20 text-center">
+          <p className="font-jost text-[10px] font-medium tracking-[0.22em] uppercase text-gold mb-4">
+            Be First to Know
+          </p>
+          <h2 className="font-playfair font-bold text-3xl lg:text-4xl text-brand-black mb-5 tracking-tight">
+            Get on the list.
+          </h2>
+          <p className="font-jost font-light text-base text-muted leading-relaxed mb-10">
+            Tell us where you want to go and be first to hear when spots open. No spam — just real information when something&apos;s happening.
+          </p>
+          <a
+            href="https://trovatrip.com/trip/survey?hostId=69b85e2fb28d3cc6e61d1e9b&host=Rachel+and+Christian+Thomas&listId=69b85e2f26fab0bc26af08e7"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-brand-black text-white font-jost text-[11px] font-medium tracking-[0.18em] uppercase px-10 py-4 hover:bg-gold transition-colors duration-200"
+          >
+            Count Me In
+          </a>
         </div>
       </section>
 

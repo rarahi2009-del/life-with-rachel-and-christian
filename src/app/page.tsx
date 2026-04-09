@@ -24,25 +24,46 @@ const MARQUEE_ITEMS = [
 
 const QUICK_NAV = [
   {
-    icon: '✍️',
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-gold">
+        <path d="M12 20h9" />
+        <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
+      </svg>
+    ),
     title: 'The Blog',
     desc: 'Honest writing from the road — no highlight reel.',
     href: '/blog',
   },
   {
-    icon: '▶️',
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-gold">
+        <circle cx="12" cy="12" r="10" />
+        <polygon fill="currentColor" stroke="none" points="10 8 16 12 10 16 10 8" />
+      </svg>
+    ),
     title: 'Videos',
     desc: 'The ones worth your time, organized by destination.',
     href: '/videos',
   },
   {
-    icon: '✈️',
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-gold">
+        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
+        <circle cx="12" cy="9" r="2.5" />
+      </svg>
+    ),
     title: 'Group Trips',
     desc: "We're going. Come with us.",
     href: '/group-trips',
   },
   {
-    icon: '🛍️',
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-gold">
+        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+        <line x1="3" y1="6" x2="21" y2="6" />
+        <path d="M16 10a4 4 0 0 1-8 0" />
+      </svg>
+    ),
     title: 'Shop Our Favorites',
     desc: 'Everything we actually travel with.',
     href: '/shop',
@@ -57,6 +78,7 @@ const BLOG_POSTS = [
     excerpt:
       'The crowds are real. The timing is impossible to predict. And somehow it was still everything. Here\'s what we wish we knew.',
     slug: 'cherry-blossoms-tokyo',
+    objectPosition: 'center 60%',
   },
   {
     image: IMAGES.blog.tokyoDisneyland,
@@ -65,6 +87,7 @@ const BLOG_POSTS = [
     excerpt:
       "Christian said he'd sit at a café. He ended up on Space Mountain twice. This is the story of how Tokyo Disney actually got us.",
     slug: 'tokyo-disneyland-adults',
+    objectPosition: 'center center',
   },
   {
     image: IMAGES.blog.rome,
@@ -73,6 +96,7 @@ const BLOG_POSTS = [
     excerpt:
       "The food is as good as they say. The queues are worse. Here's our actual breakdown after spending a week in the Eternal City.",
     slug: 'rome-honest-review',
+    objectPosition: 'center top',
   },
 ]
 
@@ -171,7 +195,7 @@ export default function HomePage() {
               href={card.href}
               className="nav-card group border border-divider bg-white p-6 flex flex-col gap-3 card-hover transition-colors duration-250 cursor-pointer"
             >
-              <span className="text-2xl nav-card-icon">{card.icon}</span>
+              <span className="nav-card-icon">{card.icon}</span>
               <div className="font-playfair font-bold text-lg nav-card-title text-brand-black leading-tight">
                 {card.title}
               </div>
@@ -269,7 +293,7 @@ export default function HomePage() {
                   alt={post.title}
                   fill
                   className="object-cover group-hover:scale-[1.02] transition-transform duration-500"
-                  style={{ objectPosition: 'center top' }}
+                  style={{ objectPosition: post.objectPosition }}
                   sizes="(max-width: 768px) 100vw, 33vw"
                 />
               </div>
@@ -325,10 +349,12 @@ export default function HomePage() {
             </div>
             <div className="shrink-0">
               <Link
-                href="/group-trips"
+                href="https://trovatrip.com/trip/survey?hostId=69b85e2fb28d3cc6e61d1e9b&host=Rachel+and+Christian+Thomas&listId=69b85e2f26fab0bc26af08e7"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-block border border-gold text-gold font-jost text-[11px] font-medium tracking-[0.18em] uppercase px-8 py-4 hover:bg-gold hover:text-white transition-colors duration-200"
               >
-                Join the Waitlist
+                Count Me In
               </Link>
             </div>
           </div>

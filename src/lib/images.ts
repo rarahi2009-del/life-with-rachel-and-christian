@@ -48,6 +48,15 @@ export const IMAGES = {
     japanPacking: `${UNSPLASH}/photo-1553361371-9b22f78e8b1d?w=800&q=80&auto=format&fit=crop`,
     // Blog post header — couple selfie
     postHeader: '/images/couple-selfie-blue-sky.jpg',
+    // SF layover
+    sfLayover: '/images/sf-couple-selfie-park.jpg',
+    sfSkyline: '/images/sf-marina-green-skyline.jpg',
+    sfGoldenGate: '/images/sf-golden-gate-view.jpg',
+    sfAlcatraz: '/images/sf-alcatraz-sailboat.jpg',
+    sfPalmTrees: '/images/sf-palm-trees-skyline.jpg',
+    sfWaterfront: '/images/sf-rachel-waterfront.jpg',
+    sfGrass: '/images/sf-rachel-grass.jpg',
+    sfPeaceSign: '/images/sf-rachel-peace-sign.jpg',
   },
 
   // ─── VIDEOS ───────────────────────────────────────────────────────────────
