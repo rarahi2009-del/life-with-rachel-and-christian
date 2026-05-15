@@ -79,6 +79,8 @@ export const IMAGES = {
   groupTrips: {
     // Cherry blossoms for Japan spring trip
     japanSpring: '/images/cherry-blossoms-selfie.jpg',
+    // Thailand Reset group trip hero
+    thailand: '/images/thailand-reset-hero.png',
     // No SE Asia photos yet — keeping Unsplash
     southeastAsia: `${UNSPLASH}/photo-1528360983277-13d401cdc186?w=800&q=80&auto=format&fit=crop`,
     // Rachel & Christian at Amsterdam Dam Square

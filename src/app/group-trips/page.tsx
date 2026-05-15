@@ -27,10 +27,20 @@ const STEPS = [
 
 const DESTINATION_CARDS = [
   {
+    image: IMAGES.groupTrips.thailand,
+    tag: 'November 2026',
+    title: 'Thailand',
+    desc: 'Eight days across Bangkok and Chiang Mai. Floating markets, UNESCO ruins, sleeper train, and a cooking class in a 150-year-old teak house.',
+    href: '/group-trips/thailand',
+    bookable: true,
+  },
+  {
     image: IMAGES.groupTrips.europe,
     tag: 'Summer 2026',
     title: 'Greece',
     desc: "Islands, history, and food worth every bite. Small group, slow pace — the way it should be done.",
+    href: null,
+    bookable: false,
   },
 ]
 
@@ -192,37 +202,50 @@ export default function GroupTripsPage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-sm mx-auto md:max-w-none">
-          {DESTINATION_CARDS.map((card) => (
-            <div key={card.title} className="group card-hover border border-divider bg-white relative overflow-hidden">
-              <div className="relative aspect-[4/3] overflow-hidden">
-                <Image
-                  src={card.image}
-                  alt={card.title}
-                  fill
-                  className="object-cover opacity-80 group-hover:scale-[1.02] transition-transform duration-500"
-                  style={{ objectPosition: 'center top' }}
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                />
-                {/* Coming soon overlay */}
-                <div className="absolute inset-0 bg-brand-black/40 flex items-center justify-center">
-                  <span className="font-jost text-[10px] font-medium tracking-[0.2em] uppercase text-white border border-white/60 px-4 py-2">
-                    Coming Soon
-                  </span>
+          {DESTINATION_CARDS.map((card) => {
+            const Wrapper = card.href ? 'a' : 'div'
+            return (
+              <Wrapper
+                key={card.title}
+                {...(card.href ? { href: card.href } : {})}
+                className="group card-hover border border-divider bg-white relative overflow-hidden"
+              >
+                <div className="relative aspect-[4/3] overflow-hidden">
+                  <Image
+                    src={card.image}
+                    alt={card.title}
+                    fill
+                    className="object-cover opacity-80 group-hover:scale-[1.02] transition-transform duration-500"
+                    style={{ objectPosition: 'center top' }}
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
+                  {!card.bookable && (
+                    <div className="absolute inset-0 bg-brand-black/40 flex items-center justify-center">
+                      <span className="font-jost text-[10px] font-medium tracking-[0.2em] uppercase text-white border border-white/60 px-4 py-2">
+                        Coming Soon
+                      </span>
+                    </div>
+                  )}
                 </div>
-              </div>
-              <div className="p-6">
-                <div className="font-jost text-[10px] font-medium tracking-[0.18em] uppercase text-gold mb-2">
-                  {card.tag}
+                <div className="p-6">
+                  <div className="font-jost text-[10px] font-medium tracking-[0.18em] uppercase text-gold mb-2">
+                    {card.tag}
+                  </div>
+                  <h3 className="font-playfair font-bold text-xl text-brand-black mb-2">
+                    {card.title}
+                  </h3>
+                  <p className="font-jost text-sm font-light text-muted leading-relaxed mb-4">
+                    {card.desc}
+                  </p>
+                  {card.bookable && (
+                    <span className="inline-block font-jost text-[10px] font-medium tracking-[0.18em] uppercase text-gold border-b border-gold pb-0.5">
+                      View Trip Details →
+                    </span>
+                  )}
                 </div>
-                <h3 className="font-playfair font-bold text-xl text-brand-black mb-2">
-                  {card.title}
-                </h3>
-                <p className="font-jost text-sm font-light text-muted leading-relaxed">
-                  {card.desc}
-                </p>
-              </div>
-            </div>
-          ))}
+              </Wrapper>
+            )
+          })}
         </div>
       </section>
 
