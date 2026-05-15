@@ -207,11 +207,14 @@ function BookButton() {
           cancelUrl: `${window.location.origin}/group-trips/thailand`,
         }),
       })
-      const { url } = await res.json()
-      window.location.href = url
-    } catch {
+      const data = await res.json()
+      if (!res.ok) {
+        throw new Error(data.error || 'Unknown error')
+      }
+      window.location.href = data.url
+    } catch (err: any) {
       setLoading(false)
-      alert('Something went wrong. Please try again or contact us directly.')
+      alert(`Error: ${err.message}`)
     }
   }
 

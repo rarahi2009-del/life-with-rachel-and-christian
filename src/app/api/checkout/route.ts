@@ -8,27 +8,32 @@ export async function POST(req: NextRequest) {
 
   const { priceId, successUrl, cancelUrl } = await req.json()
 
-  const session = await stripe.checkout.sessions.create({
-    mode: 'payment',
-    line_items: [
-      {
-        price: priceId,
-        quantity: 1,
-      },
-    ],
-    success_url: successUrl,
-    cancel_url: cancelUrl,
-    billing_address_collection: 'required',
-    phone_number_collection: { enabled: true },
-    custom_fields: [
-      {
-        key: 'emergency_contact',
-        label: { type: 'custom', custom: 'Emergency contact name & phone' },
-        type: 'text',
-        optional: true,
-      },
-    ],
-  })
+  try {
+    const session = await stripe.checkout.sessions.create({
+      mode: 'payment',
+      line_items: [
+        {
+          price: priceId,
+          quantity: 1,
+        },
+      ],
+      success_url: successUrl,
+      cancel_url: cancelUrl,
+      billing_address_collection: 'required',
+      phone_number_collection: { enabled: true },
+      custom_fields: [
+        {
+          key: 'emergency_contact',
+          label: { type: 'custom', custom: 'Emergency contact name & phone' },
+          type: 'text',
+          optional: true,
+        },
+      ],
+    })
 
-  return NextResponse.json({ url: session.url })
+    return NextResponse.json({ url: session.url })
+  } catch (err: any) {
+    console.error('Stripe error:', err)
+    return NextResponse.json({ error: err.message }, { status: 500 })
+  }
 }
