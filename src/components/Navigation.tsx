@@ -9,6 +9,7 @@ const NAV_LINKS = [
   { href: '/videos', label: 'Videos' },
   { href: '/group-trips', label: 'Group Trips' },
   { href: '/shop', label: 'Shop' },
+  { href: '/affiliates', label: 'Affiliates' },
   { href: '/work-with-us', label: 'Work With Us' },
 ]
 
