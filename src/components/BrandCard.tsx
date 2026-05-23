@@ -18,19 +18,21 @@ export default function BrandCard({ brand }: { brand: Brand }) {
   return (
     <div className="bg-white border border-divider flex flex-col card-hover group">
       {/* Logo area */}
-      <div className="h-24 bg-beige flex items-center justify-center p-5 border-b border-divider">
+      <div className="h-24 bg-white border-b border-divider overflow-hidden">
         {brand.logo && !logoFailed ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={brand.logo}
             alt={brand.name}
-            className="h-10 w-auto max-w-[140px] object-contain"
+            className="w-full h-full object-cover"
             onError={() => setLogoFailed(true)}
           />
         ) : (
-          <span className="font-playfair font-bold text-xl text-brand-black">
-            {brand.name}
-          </span>
+          <div className="w-full h-full bg-beige flex items-center justify-center">
+            <span className="font-playfair font-bold text-xl text-brand-black">
+              {brand.name}
+            </span>
+          </div>
         )}
       </div>
 
