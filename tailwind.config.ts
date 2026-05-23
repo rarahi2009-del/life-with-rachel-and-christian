@@ -14,6 +14,7 @@ const config: Config = {
         'light-beige': '#EDE8DC',
         'brand-black': '#0A0A0A',
         'charcoal': '#2A2A2A',
+        'navy': '#1B3050',
         'muted': '#888070',
         'gold': '#B8912A',
         'gold-light': '#D4A843',

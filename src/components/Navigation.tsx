@@ -42,7 +42,7 @@ export default function Navigation() {
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
             ? 'bg-off-white shadow-sm border-b border-divider'
-            : 'bg-off-white/96 backdrop-blur-sm'
+            : 'bg-off-white border-b border-divider/50'
         }`}
       >
         <div className="max-w-7xl mx-auto px-5 lg:px-8">
