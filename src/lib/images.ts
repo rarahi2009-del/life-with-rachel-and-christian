@@ -14,8 +14,8 @@ export const IMAGES = {
   hero: {
     // Tulip farm couple — warm, genuine, not travel-cliché
     home: '/images/tulip-farm-couple.jpg',
-    // Couple selfie outdoors, blue sky
-    about: '/images/couple-selfie-blue-sky.jpg',
+    // Santorini canva banner
+    about: '/images/about-hero-canva.png',
     // Mediterranean yacht — travel energy
     groupTrips: '/images/mediterranean-yacht.jpg',
   },
