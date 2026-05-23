@@ -455,7 +455,7 @@ export default function ThailandTripPage() {
             Installment Plans Available
           </p>
           <p className="font-jost text-sm font-light text-muted leading-relaxed">
-            Need to spread the remaining balance over time? Affirm financing is available after your deposit is placed. We&apos;ll include details in your booking confirmation.
+            Affirm financing is available for both the deposit and the remaining balance. We&apos;ll include details in your booking confirmation.
           </p>
         </div>
       </section>
@@ -500,10 +500,6 @@ export default function ThailandTripPage() {
         </div>
         <div className="space-y-4">
           {[
-            {
-              label: 'Pending spot',
-              detail: '100% refundable. Cancel anytime before confirming.',
-            },
             {
               label: '91+ days before departure',
               detail: 'Partial refund + future trip credit, minus a $100 processing fee.',

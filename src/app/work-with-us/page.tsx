@@ -94,11 +94,11 @@ export default function WorkWithUsPage() {
           </div>
           <div className="relative aspect-[4/5] w-full max-w-sm mx-auto lg:mx-0 overflow-hidden">
             <Image
-              src={IMAGES.workWithUs.creator}
+              src="/images/rachel-with-camera-2.jpg"
               alt="Rachel filming content"
               fill
               className="object-cover"
-              style={{ objectPosition: 'center top' }}
+              style={{ objectPosition: 'center center' }}
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
           </div>

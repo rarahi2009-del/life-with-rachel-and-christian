@@ -21,13 +21,9 @@ export default async function BlogPage() {
           <p className="font-jost text-[10px] font-medium tracking-[0.22em] uppercase text-gold mb-4">
             Writing From the Road
           </p>
-          <h1 className="font-playfair font-black text-4xl sm:text-5xl lg:text-6xl text-white leading-tight tracking-tight mb-6 max-w-2xl">
+          <h1 className="font-playfair font-black text-4xl sm:text-5xl lg:text-6xl text-white leading-tight tracking-tight max-w-2xl">
             The Blog
           </h1>
-          <p className="font-jost font-light text-base lg:text-lg text-white/65 max-w-xl leading-relaxed">
-            Honest writing from the road. No highlight reel. No sponsored opinions disguised as
-            advice. Just what&apos;s actually happening.
-          </p>
         </div>
       </section>
 

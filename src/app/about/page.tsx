@@ -1,7 +1,10 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import Link from 'next/link'
+import dynamic from 'next/dynamic'
 import { IMAGES } from '@/lib/images'
+
+const WorldMap = dynamic(() => import('@/components/WorldMap'), { ssr: false })
+const KitSignupForm = dynamic(() => import('@/components/KitSignupForm'), { ssr: false })
 
 export const metadata: Metadata = {
   title: 'About Us',
@@ -24,32 +27,6 @@ const PILLARS = [
   },
 ]
 
-const RECENT_ADVENTURES = [
-  {
-    image: IMAGES.about.japan,
-    tag: 'Japan',
-    title: 'Six Weeks in Japan: An Honest Report',
-    excerpt:
-      "More train rides than we can count. More convenience store meals than we expected to love. Here's what the country is actually like when you slow down.",
-    slug: 'six-weeks-japan',
-  },
-  {
-    image: IMAGES.about.southKorea,
-    tag: 'South Korea',
-    title: 'Seoul Was Not What We Pictured — In the Best Way',
-    excerpt:
-      "We went for the food. We stayed for everything else. South Korea moved up fast on the list of places we'd go back to immediately.",
-    slug: 'seoul-south-korea',
-  },
-  {
-    image: IMAGES.about.thailand,
-    tag: 'Thailand',
-    title: 'What a Month in Thailand Actually Costs',
-    excerpt:
-      'The honest number. No rounding down, no leaving out the splurges. Here\'s what we actually spent across Bangkok, Chiang Mai, and the islands.',
-    slug: 'thailand-cost-breakdown',
-  },
-]
 
 export default function AboutPage() {
   return (
@@ -102,13 +79,13 @@ export default function AboutPage() {
             <div className="font-jost font-light text-[1.05rem] text-charcoal leading-[1.85] space-y-5">
               <p>Hey, we&apos;re Christian and Rachel.</p>
               <p>
-                We didn&apos;t quit our jobs and figure it out. We didn&apos;t sell everything and disappear. We just decided that travel didn&apos;t have to wait until retirement, and then we built a life around that.
+                We chose a different life. Not the dramatic quit-your-job-and-disappear kind — just a quiet decision to stop waiting and start living differently. We became digital nomads, embraced slow travel, and figured out what that actually looks like when you&apos;re two real people in your 30s.
               </p>
               <p>
-                We still own our house. Rachel still works. Christian handles the logistics and the camera and honestly most of the research. We&apos;re in our 30s, we know what we want, and we wanted to see the world without blowing up everything we worked for to do it.
+                Slow travel means we stay longer, go deeper, and actually get to know the places we visit instead of rushing through a checklist. It means working remotely from Kyoto one month and Chiang Mai the next, and building a life around going without blowing up everything we worked for.
               </p>
               <p>
-                That&apos;s what this channel is about. Not the leap. Not the hustle. Just what it actually looks like when two real people decide to go, and keep going, and figure out how to make it last.
+                That&apos;s what this channel is about. Not the highlight reel. Not the hustle. Just what it actually looks like when two people decide to live differently — and keep going.
               </p>
               <p>
                 If you&apos;ve been watching other travel creators and thinking &ldquo;that&apos;s not really my life though&rdquo; — you might be in the right place.
@@ -165,55 +142,61 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ── RECENT ADVENTURES ────────────────────────────────────────────── */}
+      {/* ── WHERE WE'VE BEEN ─────────────────────────────────────────────── */}
       <section className="max-w-7xl mx-auto px-5 lg:px-8 py-16 lg:py-20">
-        <div className="flex items-end justify-between mb-10">
-          <div>
-            <p className="font-jost text-[10px] font-medium tracking-[0.22em] uppercase text-gold mb-3">
-              Currently In / Recent Adventures
-            </p>
-            <h2 className="font-playfair font-bold text-3xl text-brand-black tracking-tight">
-              Where We&apos;ve Been
-            </h2>
-          </div>
-          <Link
-            href="/blog"
-            className="font-jost text-[11px] font-medium tracking-[0.15em] uppercase text-gold underline underline-offset-4 hover:text-gold-light transition-colors hidden sm:block"
-          >
-            All Posts
-          </Link>
+        <div className="mb-10">
+          <p className="font-jost text-[10px] font-medium tracking-[0.22em] uppercase text-gold mb-3">
+            The Stamp Collection
+          </p>
+          <h2 className="font-playfair font-bold text-3xl lg:text-4xl text-brand-black tracking-tight">
+            Where We&apos;ve Been
+          </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {RECENT_ADVENTURES.map((post) => (
-            <Link
-              key={post.slug}
-              href={`/blog/${post.slug}`}
-              className="group card-hover border border-divider bg-white block"
-            >
-              <div className="relative aspect-[4/3] overflow-hidden">
-                <Image
-                  src={post.image}
-                  alt={post.title}
-                  fill
-                  className="object-cover group-hover:scale-[1.02] transition-transform duration-500"
-                  style={{ objectPosition: 'center top' }}
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                />
+        {/* ── Stats strip ── */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-divider border border-divider mb-12">
+          {[
+            { number: '33', label: 'Countries' },
+            { number: '6',  label: 'Continents' },
+            { number: '18+', label: 'Months Abroad' },
+            { number: '∞',  label: 'More to Go' },
+          ].map((stat) => (
+            <div key={stat.label} className="bg-white px-6 py-8 text-center">
+              <div className="font-playfair font-black text-4xl text-gold mb-1 leading-none">
+                {stat.number}
               </div>
-              <div className="p-6">
-                <div className="font-jost text-[10px] font-medium tracking-[0.18em] uppercase text-gold mb-3">
-                  {post.tag}
-                </div>
-                <h3 className="font-playfair font-bold text-lg text-brand-black leading-tight mb-3">
-                  {post.title}
-                </h3>
-                <p className="font-jost text-sm font-light text-muted leading-relaxed">
-                  {post.excerpt}
-                </p>
+              <div className="font-jost text-[10px] font-medium tracking-[0.18em] uppercase text-muted">
+                {stat.label}
               </div>
-            </Link>
+            </div>
           ))}
+        </div>
+
+        {/* ── World map ── */}
+        <div className="border border-divider bg-beige p-4 lg:p-8">
+          <WorldMap />
+        </div>
+      </section>
+
+      {/* ── EMAIL SIGNUP ─────────────────────────────────────────────────── */}
+      <section className="bg-brand-black">
+        <div className="max-w-7xl mx-auto px-5 lg:px-8 py-16 lg:py-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
+            <div>
+              <p className="font-jost text-[10px] font-medium tracking-[0.22em] uppercase text-gold mb-4">
+                Stay in the Loop
+              </p>
+              <h2 className="font-playfair font-bold text-3xl lg:text-4xl text-white leading-tight tracking-tight mb-4">
+                Come along for the ride.
+              </h2>
+              <p className="font-jost font-light text-base text-white/65 leading-relaxed">
+                New destinations, trip announcements, and honest dispatches from wherever we are. No fluff, no filler — just the stuff worth reading.
+              </p>
+            </div>
+            <div>
+              <KitSignupForm />
+            </div>
+          </div>
         </div>
       </section>
     </>

@@ -70,33 +70,26 @@ const QUICK_NAV = [
   },
 ]
 
-const BLOG_POSTS = [
+const FEATURED_VIDEOS = [
   {
-    image: IMAGES.blog.cherryBlossomTokyo,
-    tag: 'Japan · Tokyo',
-    title: 'Cherry Blossoms in Tokyo: What Nobody Tells You Before You Go',
-    excerpt:
-      'The crowds are real. The timing is impossible to predict. And somehow it was still everything. Here\'s what we wish we knew.',
-    slug: 'cherry-blossoms-tokyo',
-    objectPosition: 'center 60%',
+    videoId: 'BkpuvNKNPwg',
+    tag: 'Digital Nomad Life',
+    title: 'My Husband Quit His 9-5 So We Can Travel the World — Our Digital Nomad Story',
   },
   {
-    image: IMAGES.blog.tokyoDisneyland,
-    tag: 'Japan · Tokyo',
-    title: 'Tokyo Disneyland as Adults Who Were Skeptical: A Completely Honest Take',
-    excerpt:
-      "Christian said he'd sit at a café. He ended up on Space Mountain twice. This is the story of how Tokyo Disney actually got us.",
-    slug: 'tokyo-disneyland-adults',
-    objectPosition: 'center center',
+    videoId: 'bjwlyBLJr0A',
+    tag: 'Vietnam · Da Nang',
+    title: 'Ho Chi Minh City vs. Da Nang — Which is Best for Digital Nomads',
   },
   {
-    image: IMAGES.blog.rome,
-    tag: 'Europe · Rome',
-    title: 'Rome in 5 Days: What We Loved, What Annoyed Us, What We\'d Do Differently',
-    excerpt:
-      "The food is as good as they say. The queues are worse. Here's our actual breakdown after spending a week in the Eternal City.",
-    slug: 'rome-honest-review',
-    objectPosition: 'center top',
+    videoId: 'PG7TgZcGATg',
+    tag: 'Weekly Vlogs · Seoul',
+    title: 'Standing Korean BBQ, a Dog Cafe, and Street Food — One Week in Seoul',
+  },
+  {
+    videoId: 'Miaw1XeGj1E',
+    tag: 'Digital Nomad Life',
+    title: 'Our Full Prep Plan for Becoming Digital Nomads',
   },
 ]
 
@@ -152,14 +145,14 @@ export default function HomePage() {
             className="font-playfair font-black text-4xl sm:text-5xl lg:text-6xl text-white leading-[1.05] tracking-tight mb-5 animate-fade-in-up opacity-0-init delay-250"
             style={{ animationFillMode: 'forwards' }}
           >
-            We decided to go. We kept going.<br className="hidden sm:block" />
-            Here&apos;s what that actually looks like.
+            Two people. One life built differently.<br className="hidden sm:block" />
+            This is what slow travel actually looks like.
           </h1>
           <p
             className="font-jost font-light text-base lg:text-lg text-white/80 max-w-xl mb-8 leading-relaxed animate-fade-in-up opacity-0-init delay-400"
             style={{ animationFillMode: 'forwards' }}
           >
-            We&apos;re not travel influencers selling you a fantasy. We&apos;re just two people in our 30s who figured out how to keep traveling without blowing up our lives — and we&apos;re bringing you along.
+            We&apos;re not selling you a fantasy. We&apos;re two people in our 30s who became digital nomads, chose slow travel over rush trips, and documented every real moment of it — and we&apos;re bringing you along.
           </p>
           <div
             className="flex flex-wrap gap-4 animate-fade-in-up opacity-0-init delay-550"
@@ -259,65 +252,74 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── FROM THE BLOG ────────────────────────────────────────────────── */}
+      {/* ── FROM OUR CHANNEL ─────────────────────────────────────────────── */}
       <section className="max-w-7xl mx-auto px-5 lg:px-8 py-16 lg:py-20">
         {/* Section header */}
         <div className="flex items-end justify-between mb-10">
           <div>
             <p className="font-jost text-[10px] font-medium tracking-[0.22em] uppercase text-gold mb-3">
-              From the Blog
+              From Our Channel
             </p>
             <h2 className="font-playfair font-bold text-3xl lg:text-4xl text-brand-black leading-tight tracking-tight">
-              Recent Stories
+              Popular Videos
             </h2>
           </div>
           <Link
-            href="/blog"
+            href="/videos"
             className="font-jost text-[11px] font-medium tracking-[0.15em] uppercase text-gold hover:text-gold-light transition-colors underline underline-offset-4 hidden sm:block"
           >
             View All
           </Link>
         </div>
 
-        {/* Blog cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {BLOG_POSTS.map((post) => (
-            <Link
-              key={post.slug}
-              href={`/blog/${post.slug}`}
+        {/* Video cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {FEATURED_VIDEOS.map((video) => (
+            <a
+              key={video.videoId}
+              href={`https://youtu.be/${video.videoId}`}
+              target="_blank"
+              rel="noopener noreferrer"
               className="group card-hover border border-divider bg-white block"
             >
-              <div className="relative aspect-[4/3] overflow-hidden">
+              <div className="relative aspect-video overflow-hidden bg-brand-black">
                 <Image
-                  src={post.image}
-                  alt={post.title}
+                  src={`https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg`}
+                  alt={video.title}
                   fill
-                  className="object-cover group-hover:scale-[1.02] transition-transform duration-500"
-                  style={{ objectPosition: post.objectPosition }}
-                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover opacity-90 group-hover:opacity-80 group-hover:scale-[1.02] transition-all duration-500"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  unoptimized
                 />
-              </div>
-              <div className="p-6">
-                <div className="font-jost text-[10px] font-medium tracking-[0.18em] uppercase text-gold mb-3">
-                  {post.tag}
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="w-12 h-12 rounded-full bg-gold/90 flex items-center justify-center">
+                    <svg className="w-4 h-4 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </div>
                 </div>
-                <h3 className="font-playfair font-bold text-lg text-brand-black leading-tight mb-3">
-                  {post.title}
-                </h3>
-                <p className="font-jost text-sm font-light text-muted leading-relaxed">
-                  {post.excerpt}
-                </p>
               </div>
-            </Link>
+              <div className="p-5">
+                <div className="font-jost text-[10px] font-medium tracking-[0.18em] uppercase text-gold mb-2">
+                  {video.tag}
+                </div>
+                <h3 className="font-playfair font-bold text-base text-brand-black leading-tight mb-3">
+                  {video.title}
+                </h3>
+                <span className="font-jost text-[10px] font-medium tracking-[0.15em] uppercase text-gold underline underline-offset-4">
+                  Watch on YouTube →
+                </span>
+              </div>
+            </a>
           ))}
         </div>
 
         <div className="mt-6 sm:hidden">
           <Link
-            href="/blog"
+            href="/videos"
             className="font-jost text-[11px] font-medium tracking-[0.15em] uppercase text-gold hover:text-gold-light transition-colors underline underline-offset-4"
           >
-            View All Posts
+            See All Videos
           </Link>
         </div>
       </section>
@@ -341,15 +343,15 @@ export default function HomePage() {
                 Coming in 2026
               </p>
               <h2 className="font-playfair font-bold text-3xl lg:text-4xl text-white leading-tight tracking-tight mb-5">
-                We&apos;re going. Want to come with us?
+                We want to share what we love about these places. Come with us.
               </h2>
               <p className="font-jost font-light text-base text-white/65 leading-relaxed">
-                We&apos;ve been doing this full time. Now we&apos;re opening up spots on our trips for people who want to experience it alongside us — not on a tour bus.
+                We&apos;ve spent years learning the best of these places — the spots worth knowing, the things most people miss, and how to actually experience them. Now we&apos;re sharing it all with a small group who wants to come along.
               </p>
             </div>
             <div className="shrink-0">
               <Link
-                href="https://trovatrip.com/trip/survey?hostId=69b85e2fb28d3cc6e61d1e9b&host=Rachel+and+Christian+Thomas&listId=69b85e2f26fab0bc26af08e7"
+                href="https://lifewithrachelandchristian.kit.com/44c023a23a"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block border border-gold text-gold font-jost text-[11px] font-medium tracking-[0.18em] uppercase px-8 py-4 hover:bg-gold hover:text-white transition-colors duration-200"
