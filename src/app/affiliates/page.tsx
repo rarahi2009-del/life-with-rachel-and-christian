@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import BrandCard from '@/components/BrandCard'
 
 export const metadata: Metadata = {
   title: 'Brands We Love',
@@ -8,23 +9,13 @@ export const metadata: Metadata = {
 
 // ─── Data ──────────────────────────────────────────────────────────────────
 
-type Brand = {
-  name: string
-  domain: string
-  category: string
-  description: string
-  code?: string
-  codeLabel?: string
-  href: string
-}
-
 type Course = {
   title: string
   description: string
   href: string
 }
 
-const TRAVEL_TOOLS: Brand[] = [
+const TRAVEL_TOOLS = [
   {
     name: 'Holafly',
     domain: 'holafly.com',
@@ -98,69 +89,6 @@ const COURSES: Course[] = [
   },
 ]
 
-// ─── Components ────────────────────────────────────────────────────────────
-
-function BrandCard({ brand }: { brand: Brand }) {
-  return (
-    <div className="bg-white border border-divider flex flex-col card-hover group">
-      {/* Logo area */}
-      <div className="h-24 bg-beige flex items-center justify-center p-5 border-b border-divider">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={`https://logo.clearbit.com/${brand.domain}`}
-          alt={brand.name}
-          className="h-10 w-auto max-w-[140px] object-contain"
-          onError={(e) => {
-            const target = e.target as HTMLImageElement
-            target.style.display = 'none'
-            const fallback = target.nextElementSibling as HTMLElement
-            if (fallback) fallback.style.display = 'block'
-          }}
-        />
-        <span
-          className="font-playfair font-bold text-xl text-brand-black hidden"
-          aria-hidden="true"
-        >
-          {brand.name}
-        </span>
-      </div>
-
-      {/* Content */}
-      <div className="p-5 flex flex-col flex-1">
-        <div className="font-jost text-[9px] font-medium tracking-[0.2em] uppercase text-gold mb-1">
-          {brand.category}
-        </div>
-        <h3 className="font-playfair font-bold text-lg text-brand-black mb-3 leading-tight">
-          {brand.name}
-        </h3>
-        <p className="font-jost text-[13px] font-light text-muted leading-relaxed mb-4 flex-1">
-          {brand.description}
-        </p>
-
-        {brand.code && (
-          <div className="bg-gold-pale border-l-2 border-gold px-3 py-2 mb-4">
-            <p className="font-jost text-[10px] font-medium tracking-[0.15em] uppercase text-gold mb-0.5">
-              {brand.codeLabel}
-            </p>
-            <p className="font-jost font-medium text-sm text-brand-black tracking-widest">
-              {brand.code}
-            </p>
-          </div>
-        )}
-
-        <a
-          href={brand.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-full block text-center bg-brand-black text-white font-jost text-[10px] font-medium tracking-[0.18em] uppercase py-3 hover:bg-gold transition-colors duration-200 mt-auto"
-        >
-          Learn More →
-        </a>
-      </div>
-    </div>
-  )
-}
-
 // ─── Page ──────────────────────────────────────────────────────────────────
 
 export default function AffiliatesPage() {
@@ -222,10 +150,6 @@ export default function AffiliatesPage() {
                 src="https://logo.clearbit.com/groundedlifetravel.com"
                 alt="Grounded Life Travel"
                 className="h-10 w-10 object-contain"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement
-                  target.style.display = 'none'
-                }}
               />
             </div>
             <div>
