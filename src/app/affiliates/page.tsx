@@ -18,7 +18,7 @@ type Course = {
 const TRAVEL_TOOLS = [
   {
     name: 'Holafly',
-    domain: 'holafly.com',
+    logo: '/images/logos/holafly.png',
     category: 'eSIM & Connectivity',
     description:
       'International eSIMs that activate before you land. No SIM swap, no hunting for a local carrier — just working data the moment you arrive.',
@@ -28,7 +28,7 @@ const TRAVEL_TOOLS = [
   },
   {
     name: 'SafetyWing',
-    domain: 'safetywing.com',
+    logo: '/images/logos/safetywing.png',
     category: 'Travel Insurance',
     description:
       'Travel health insurance built for long-term travelers and digital nomads. Monthly subscription, cancel anytime, covers you in 180+ countries.',
@@ -36,7 +36,7 @@ const TRAVEL_TOOLS = [
   },
   {
     name: 'Viator',
-    domain: 'viator.com',
+    logo: '/images/logos/viator.png',
     category: 'Tours & Activities',
     description:
       'Our go-to for booking tours, day trips, and experiences around the world. Huge selection, verified operators, and easy cancellation.',
@@ -44,7 +44,7 @@ const TRAVEL_TOOLS = [
   },
   {
     name: 'GetYourGuide',
-    domain: 'getyourguide.com',
+    logo: '/images/logos/getyourguide.png',
     category: 'Tours & Activities',
     description:
       'Our second favorite for experiences — especially strong in Europe. Skip-the-line tickets, guided tours, and city passes all in one place.',
@@ -52,7 +52,7 @@ const TRAVEL_TOOLS = [
   },
   {
     name: 'Luggage Hero',
-    domain: 'luggagehero.com',
+    logo: '/images/logos/luggagehero.webp',
     category: 'Luggage Storage',
     description:
       'Store your bags by the hour at verified shops near airports, train stations, and city centers. A game-changer on arrival and departure days.',
@@ -60,7 +60,7 @@ const TRAVEL_TOOLS = [
   },
   {
     name: 'Virgin Voyages',
-    domain: 'virginvoyages.com',
+    logo: '/images/logos/virginvoyages.png',
     category: 'Cruises',
     description:
       'Adult-only cruising with all-inclusive dining, no nickel-and-diming, and a vibe that actually feels like a vacation. Not your grandparents\' cruise.',
@@ -145,12 +145,7 @@ export default function AffiliatesPage() {
           {/* Grounded Life brand banner */}
           <div className="bg-white border border-divider p-6 flex items-center gap-5 mb-8">
             <div className="h-14 w-14 bg-beige border border-divider flex items-center justify-center shrink-0">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="https://logo.clearbit.com/groundedlifetravel.com"
-                alt="Grounded Life Travel"
-                className="h-10 w-10 object-contain"
-              />
+              <span className="font-playfair font-black text-lg text-gold leading-none">GL</span>
             </div>
             <div>
               <div className="font-jost text-[10px] font-medium tracking-[0.15em] uppercase text-muted mb-1">

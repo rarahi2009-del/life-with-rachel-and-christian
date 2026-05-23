@@ -4,7 +4,7 @@ import { useState } from 'react'
 
 type Brand = {
   name: string
-  domain: string
+  logo?: string
   category: string
   description: string
   code?: string
@@ -19,18 +19,18 @@ export default function BrandCard({ brand }: { brand: Brand }) {
     <div className="bg-white border border-divider flex flex-col card-hover group">
       {/* Logo area */}
       <div className="h-24 bg-beige flex items-center justify-center p-5 border-b border-divider">
-        {logoFailed ? (
-          <span className="font-playfair font-bold text-xl text-brand-black">
-            {brand.name}
-          </span>
-        ) : (
+        {brand.logo && !logoFailed ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
-            src={`https://logo.clearbit.com/${brand.domain}`}
+            src={brand.logo}
             alt={brand.name}
             className="h-10 w-auto max-w-[140px] object-contain"
             onError={() => setLogoFailed(true)}
           />
+        ) : (
+          <span className="font-playfair font-bold text-xl text-brand-black">
+            {brand.name}
+          </span>
         )}
       </div>
 
