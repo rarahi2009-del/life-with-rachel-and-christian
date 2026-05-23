@@ -223,7 +223,7 @@ export default function ShopPage() {
   return (
     <>
       {/* ── HEADER ───────────────────────────────────────────────────────── */}
-      <section className="bg-navy pt-32 pb-16 lg:pb-20">
+      <section className="bg-brand-black pt-32 pb-16 lg:pb-20">
         <div className="max-w-7xl mx-auto px-5 lg:px-8">
           <p className="font-jost text-[10px] font-medium tracking-[0.22em] uppercase text-gold mb-4">
             Our Favorites

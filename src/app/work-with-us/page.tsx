@@ -64,7 +64,7 @@ export default function WorkWithUsPage() {
   return (
     <>
       {/* ── HEADER ───────────────────────────────────────────────────────── */}
-      <section className="bg-navy pt-32 pb-16 lg:pb-20">
+      <section className="bg-brand-black pt-32 pb-16 lg:pb-20">
         <div className="max-w-7xl mx-auto px-5 lg:px-8">
           <h1 className="font-playfair font-black text-4xl sm:text-5xl lg:text-6xl text-white leading-tight tracking-tight mb-6 max-w-2xl">
             Let&apos;s Work Together
