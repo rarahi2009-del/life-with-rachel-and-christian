@@ -1,11 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-// TODO: Set up an email service (e.g. Resend, SendGrid, or Postmark) and add your
-// CONTACT_EMAIL env var to send form submissions to your inbox.
-// For now, submissions are logged server-side and return success to the user.
-// Required env vars once configured:
-//   CONTACT_EMAIL=hello@lifewithrachelandchristian.com
-//   RESEND_API_KEY=re_...  (or equivalent for your chosen provider)
+const KIT_CONTACT_FORM_ID = '9505510'
 
 export async function POST(req: NextRequest) {
   try {
@@ -15,18 +10,19 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'All fields required' }, { status: 400 })
     }
 
-    // Log to server console until email service is configured
-    console.log('Contact form submission:', { name, email, subject, message })
+    const res = await fetch(`https://app.kit.com/forms/${KIT_CONTACT_FORM_ID}/subscriptions`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({
+        email_address: email,
+        'fields[first_name]': name,
+        'fields[subject]': subject,
+        'fields[message]': message,
+      }),
+    })
 
-    // TODO: Replace the log above with an actual email send, e.g.:
-    // await resend.emails.send({
-    //   from: 'noreply@lifewithrachelandchristian.com',
-    //   to: process.env.CONTACT_EMAIL!,
-    //   subject: `Contact form: ${subject}`,
-    //   text: `From: ${name} <${email}>\n\n${message}`,
-    // })
-
-    return NextResponse.json({ success: true })
+    if (res.ok) return NextResponse.json({ success: true })
+    return NextResponse.json({ error: 'Submission failed' }, { status: 502 })
   } catch {
     return NextResponse.json({ error: 'Server error' }, { status: 500 })
   }
