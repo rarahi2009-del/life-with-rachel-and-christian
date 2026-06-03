@@ -180,7 +180,7 @@ export default function AboutPage() {
                 Free Guide
               </p>
               <h2 className="font-playfair font-bold text-3xl lg:text-4xl text-white leading-tight tracking-tight mb-4">
-                Get our Da Nang Quick Start Guide — on us.
+                Get our Digital Nomad Quick Start Guide — on us.
               </h2>
               <p className="font-jost font-light text-base text-white/65 leading-relaxed">
                 Join the list and we&apos;ll send our Digital Nomad Quick Start Guide free — 21 pages of honest, practical advice on remote work, real budgets, and the logistics nobody talks about. Plus dispatches from wherever we are in the world.
