@@ -1,12 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+const KIT_FORM_ID = '9514811'
+
 export async function POST(req: NextRequest) {
   try {
     const { email } = await req.json()
     if (!email || typeof email !== 'string') {
       return NextResponse.json({ error: 'Email required' }, { status: 400 })
     }
-    const res = await fetch('https://app.kit.com/forms/9476777/subscriptions', {
+    const res = await fetch(`https://app.kit.com/forms/${KIT_FORM_ID}/subscriptions`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: new URLSearchParams({ email_address: email }),

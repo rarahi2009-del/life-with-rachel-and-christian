@@ -9,6 +9,7 @@ const NAV_COL_1 = [
 
 const NAV_COL_2 = [
   { href: '/shop', label: 'Shop Our Favorites' },
+  { href: '/affiliates', label: 'Resources' },
   { href: '/work-with-us', label: 'Work With Us' },
   { href: '/contact', label: 'Contact' },
   {
@@ -177,7 +178,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-white/10 mt-14 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="font-jost text-xs text-white/35 tracking-wide">
-            © 2025 Life With Rachel and Christian. All rights reserved.
+            © {new Date().getFullYear()} Life With Rachel and Christian. All rights reserved.
           </p>
           <p className="font-jost text-xs text-white/35 tracking-wide">
             LifeWithRachelAndChristian.com

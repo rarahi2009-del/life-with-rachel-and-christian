@@ -9,7 +9,7 @@ const NAV_LINKS = [
   { href: '/videos', label: 'Videos' },
   { href: '/group-trips', label: 'Group Trips' },
   { href: '/shop', label: 'Shop' },
-  { href: '/affiliates', label: 'Affiliates' },
+  { href: '/affiliates', label: 'Resources' },
   { href: '/work-with-us', label: 'Work With Us' },
 ]
 
@@ -72,14 +72,6 @@ export default function Navigation() {
 
             {/* Desktop right side */}
             <div className="hidden lg:flex items-center gap-5">
-              <a
-                href="https://www.patreon.com/c/LifewithRachelandChristian"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-jost text-[11px] font-medium tracking-[0.2em] uppercase text-muted hover:text-gold transition-colors duration-200"
-              >
-                Patreon
-              </a>
               <Link
                 href="/group-trips"
                 className="bg-gold text-white font-jost text-[11px] font-medium tracking-[0.18em] uppercase px-5 py-3 hover:bg-gold-light transition-colors duration-200"
@@ -134,22 +126,22 @@ export default function Navigation() {
           ))}
         </nav>
 
-        <div className="mt-10 pt-8 border-t border-white/15 flex flex-col items-center gap-4 w-56">
+        <div className="mt-10 pt-8 border-t border-white/15 flex flex-col items-center gap-4 w-64">
+          <Link
+            href="/group-trips"
+            onClick={() => setMenuOpen(false)}
+            className="w-full text-center bg-gold text-white font-jost text-[11px] font-medium tracking-[0.18em] uppercase px-5 py-4 hover:bg-gold-light transition-colors"
+          >
+            Join the Waitlist
+          </Link>
           <a
             href="https://www.patreon.com/c/LifewithRachelandChristian"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-jost text-[11px] font-medium tracking-[0.2em] uppercase text-muted hover:text-gold transition-colors"
+            className="font-jost text-[10px] font-medium tracking-[0.2em] uppercase text-white/40 hover:text-gold transition-colors"
           >
             Patreon
           </a>
-          <Link
-            href="/group-trips"
-            onClick={() => setMenuOpen(false)}
-            className="w-full text-center bg-gold text-white font-jost text-[11px] font-medium tracking-[0.18em] uppercase px-5 py-3 hover:bg-gold-light transition-colors"
-          >
-            Join the Waitlist
-          </Link>
         </div>
       </div>
     </>
